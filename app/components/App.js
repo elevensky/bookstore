@@ -8,15 +8,15 @@ import { RouteHandler } from 'react-router'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleDismissClick = this.handleDismissClick.bind(this)
   }
   render() {
     //这里的children是react-router注入的this.props.children的封装
     const { children } = this.props
     return (
       <div>
+        <Header/>
         {children}
+        <Footer/>
       </div>
     )
   }

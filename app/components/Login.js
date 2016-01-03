@@ -1,20 +1,16 @@
 import React from 'react';
-import AddCharacterStore from '../stores/AddCharacterStore';
-import AddCharacterActions from '../actions/AddCharacterActions';
 
-class AddCharacter extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = AddCharacterStore.getState();
-    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    AddCharacterStore.listen(this.onChange);
+
   }
 
   componentWillUnmount() {
-    AddCharacterStore.unlisten(this.onChange);
+
   }
 
   onChange(state) {
@@ -50,21 +46,17 @@ class AddCharacter extends React.Component {
               <div className='panel-heading'>Add Character</div>
               <div className='panel-body'>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                  <div className={'form-group ' + this.state.nameValidationState}>
+                  <div className={'form-group '}>
                     <label className='control-label'>Character Name</label>
-                    <input type='text' className='form-control' ref='nameTextField' value={this.state.name}
-                           onChange={AddCharacterActions.updateName} autoFocus/>
-                    <span className='help-block'>{this.state.helpBlock}</span>
+                    <input type='text' className='form-control' ref='nameTextField' value='' autoFocus/>
                   </div>
-                  <div className={'form-group ' + this.state.genderValidationState}>
+                  <div className={'form-group '}>
                     <div className='radio radio-inline'>
-                      <input type='radio' name='gender' id='female' value='Female' checked={this.state.gender === 'Female'}
-                             onChange={AddCharacterActions.updateGender}/>
+                      <input type='radio' name='gender' id='female' value='Female' />
                       <label htmlFor='female'>Female</label>
                     </div>
                     <div className='radio radio-inline'>
-                      <input type='radio' name='gender' id='male' value='Male' checked={this.state.gender === 'Male'}
-                             onChange={AddCharacterActions.updateGender}/>
+                      <input type='radio' name='gender' id='male' value='Male' />
                       <label htmlFor='male'>Male</label>
                     </div>
                   </div>
@@ -79,4 +71,4 @@ class AddCharacter extends React.Component {
   }
 }
 
-export default AddCharacter;
+export default Login;

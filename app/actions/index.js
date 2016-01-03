@@ -1,4 +1,5 @@
 import { CALL_API, Schemas } from '../middleware/api'
+import isEmpty from 'lodash/lang/isEmpty'
 
 export const INDEX_REQUEST = 'INDEX_REQUEST'
 export const INDEX_SUCCESS = 'INDEX_SUCCESS'
@@ -21,11 +22,11 @@ export function loadIndex() {
   return (dispatch, getState) => {
     //检查是否缓存
     const recoms = getState().indexs.recoms
-    if (recoms) {
+    if (!isEmpty(recoms)) {
       return null
     }
     //抓取数据
-    return dispatch(fetchUser())
+    return dispatch(fetchIndex())
   }
 }
 

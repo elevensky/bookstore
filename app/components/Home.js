@@ -11,11 +11,10 @@ function loadData(props) {
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { indexList:[] };
   }
 
   componentWillMount() {
-    loadData()
+    loadData(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,10 +24,10 @@ class Home extends React.Component {
   }
 
   render() {
-    let { recomms } = this.props;
+    let { recoms } = this.props.indexs;
     let newsList = [];
-    for( let key in recomms) {
-      let { author, title , image, isbn10, summary } = recomms[key];
+    for( let key in recoms) {
+      let { author, title , image, isbn10, summary } = recoms[key];
 
       newsList.push(
         <Indexbook key={isbn10} author={author} name={title} imgsrc={image} descripe={summary}/>
@@ -55,14 +54,12 @@ Home.propTypes = {
 }
 
 function mapStateToProps(state) {
-  let indexList = state.indexList
+  const { pagename } = state.router.params
+  let indexs = state.indexs
   return {
-    indexList
+    pagename,
+    indexs
   }
 }
 
-function mapDispatchToProps(dispatch) {
-   return bindActionCreators({ loadIndex }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, { loadIndex })(Home)

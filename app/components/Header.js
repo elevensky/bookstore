@@ -33,6 +33,10 @@ class Header extends React.Component {
             </li>
             <li><Link to='about' activeClassName="active">关于我们</Link></li>
           </ul>
+          <ul className='nav navbar-nav pull-right'>
+            <li><Link to='login' activeClassName="active">登录</Link></li>
+            <li><Link to='register' activeClassName="active">注册</Link></li>
+          </ul>
         </div>
       </nav>
     );

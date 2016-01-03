@@ -12,15 +12,21 @@ var deps = [
 ];
 
 var config = {
+    devtool: 'cheap-module-eval-source-map',
     entry: {
-      entry: ['./app/main.js'],
+      bundle: [
+        'webpack-dev-server/client?http://127.0.0.1:3000',  // 热加载访问服务地址
+        'webpack/hot/only-dev-server',
+        './app/main.js'
+      ],
       vendors: [ 'jquery', 'bootstrap']
     },
 
-    //入口文件输出配置
+    //入口文件输出配置path是指文件的绝对路径，publicPath是指访问路径，结合前台调用为publicPath的值
     output: {
         path: path.join(__dirname, '/bundle/'),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: '/public/'
     },
 
     //加载器配置
@@ -35,7 +41,8 @@ var config = {
               exclude: [node_modules_dir],
               loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
             },
-            { test: /\.js[x]?$/, exclude: '/node_modules/', loader: 'babel-loader' },
+            //注意热替换include: path.join(__dirname, 'app')
+            { test: /\.js[x]?$/, loaders: ['react-hot', 'babel'], include: path.join(__dirname, 'app')},
             { test: /.*\.(gif|png|jpe?g|svg)$/i, loader: 'url-loader?limit=8192' },
             { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
             { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
@@ -53,8 +60,12 @@ var config = {
 
     plugins: [
         //new webpack.optimize.CommonsChunkPlugin('common.js'),
-        new ExtractTextPlugin("[name].css"),
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js')
+        new ExtractTextPlugin("style.css"),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        // react代码热加载插件
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ]
 };
 

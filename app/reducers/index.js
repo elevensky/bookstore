@@ -6,8 +6,8 @@ import { combineReducers } from 'redux'
 
 // Updates an entity cache in response to any action with response.entities.
 function indexs(state = { recoms: {} }, action) {
-  if (action.response && action.response.entities) {
-    return merge({}, state, action.response.entities)
+  if (action.response) {
+    return merge({}, state, action.response)
   }
 
   return state
@@ -33,16 +33,3 @@ const rootReducer = combineReducers({
 })
 
 export default rootReducer
-
-/*
-import { combineReducers } from 'redux';
-import books from './lists';
-import indexs from './indexs';
-
-const rootReducer = combineReducers({
-  books: books,
-  indexs: indexs
-});
-
-export default rootReducer;
-*/

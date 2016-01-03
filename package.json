@@ -54,7 +54,7 @@
     "webpack-hot-middleware": "^2.5.0"
   },
   "scripts": {
-    "start": "rm -rf bundle && webpack -w -d --progress --colors",
+    "start": "node server.js",
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base ./"
   }
 }

@@ -11,12 +11,12 @@ class Footer extends React.Component {
         <div className='container'>
           <div className='row'>
             <div className='col-sm-8'>
-              <h3 className='lead'><strong>专注于最前沿的互联网教育</strong></h3>
-              <p>联系QQ：1256384767</p>
-              <p>电子邮箱：1256384767@qq.com</p>
+              <h3 className='lead'><strong>React+redux项目实战练习</strong></h3>
+              <p>联系QQ：XXXXXXXXXX</p>
+              <p>电子邮箱：XXXXXXXXXX@qq.com</p>
             </div>
             <div className='col-sm-4 hidden-xs'>
-              <h3 className='lead'><strong>学徒之旅</strong></h3>
+              <h3 className='lead'><strong>Js之旅</strong></h3>
               <p className='weixin'>
                 <img src="./img/elevensky.jpeg" width="120"/>
               </p>
