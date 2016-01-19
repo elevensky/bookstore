@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "^3.3.5",
     "bundle-loader": "^0.5.4",
+    "ccap": "0.6.4",
     "colors": "^1.1.2",
     "css-loader": "~0.16.0",
     "express": "^4.13.3",
